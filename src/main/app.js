@@ -3,19 +3,21 @@ const { app, BrowserWindow } = require('electron');
 let win;
 
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 600 });
-
-  console.log(process.env.NODE_ENV);
+  win = new BrowserWindow({
+    minWidth: 800,
+    width: 800,
+    minHeight: 600,
+    height: 600,
+    title: 'MinecraftChat',
+    titleBarStyle: 'hidden' 
+  });
 
   let url = process.env.NODE_ENV === 'production'
     ? `file://${__dirname}/../index.html`
     : `http://localhost:8080`;
 
   win.loadURL(url);
-
-  win.on('closed', () => {
-    win = null;
-  });
+  win.on('closed', () => win = null);
 }
 
 /**
