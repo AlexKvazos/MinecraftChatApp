@@ -14,7 +14,7 @@ var config = {
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:8080',
     'webpack/hot/dev-server',
-    path.join(__dirname, '../src/render/main.js'),
+    path.join(__dirname, '../src/render/render.js'),
     path.join(__dirname, '../src/render/less/main.less')
   ],
 
@@ -25,11 +25,11 @@ var config = {
   },
 
   plugins: [
-    new CopyWebpackPlugin([{ from: path.join(__dirname, '../resources'), to: path.join(__dirname, '../www/resources')}],
+    new CopyWebpackPlugin([{ from: path.join(__dirname, '../resources'), to: path.join(__dirname, '../dist/resources')}],
     { copyUnmodified: true }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../src/render/index.html'),
+      template: path.join(__dirname, '../src/index.html'),
       inject: false
     }),
     new webpack.DefinePlugin({
@@ -53,7 +53,7 @@ var config = {
     port: 8080,
     host: '0.0.0.0',
     inline: true,
-    contentBase: path.join(__dirname, '../www'),
+    contentBase: path.join(__dirname, '../dist'),
     publicPath: '/',
     headers: {
       'Access-Control-Allow-Origin': '*'

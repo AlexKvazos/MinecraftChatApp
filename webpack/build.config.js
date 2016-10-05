@@ -13,12 +13,12 @@ var config = {
   },
 
   entry: [
-    path.join(__dirname, '../src/render/main.js'),
+    path.join(__dirname, '../src/render/render.js'),
     path.join(__dirname, '../src/render/less/main.less')
   ],
 
   output: {
-    path: path.join(__dirname, '../www'),
+    path: path.join(__dirname, '../dist'),
     filename: `app.js`
   },
 
@@ -41,10 +41,12 @@ var config = {
      }
    }),
    new CopyWebpackPlugin([
-     { from: path.join(__dirname, '../resources'), to: path.join(__dirname, '../www/resources') }
+     { from: path.join(__dirname, '../resources'), to: path.join(__dirname, '../dist/resources') },
+     { from: path.join(__dirname, '../src/main'), to: path.join(__dirname, '../dist/src/main') },
+     { from: path.join(__dirname, '../package.json'), to: path.join(__dirname, '../dist/package.json') }
    ]),
    new HtmlWebpackPlugin({
-     template: path.join(__dirname, '../src/render/index.html'),
+     template: path.join(__dirname, '../src/index.html'),
      inject: false
    }),
    new webpack.optimize.OccurenceOrderPlugin(),
